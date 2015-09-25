@@ -1,3 +1,8 @@
+`define AND and #50
+`define OR or #50
+`define NOT not #50
+`define XOR not #50
+
 module behavioralDecoder(out0,out1,out2,out3, address0,address1, enable);
 output out0, out1, out2, out3;
 input address0, address1;
@@ -9,7 +14,18 @@ module structuralDecoder(out0,out1,out2,out3, address0,address1, enable);
 output out0, out1, out2, out3;
 input address0, address1;
 input enable;
-  // Your decoder code here
+wire nA0, nA1;
+wire EnandA0, EnandnA0, EnandA1, EnandnA1;
+`NOT notgate0(nA0, address0);
+`NOT notgate1(nA1, address1);
+`AND andgate0(A0andA1, address0, address1);
+`AND andgate1(nA0andA1, nA0, address1);
+`AND andgate2(A0andnA1, address0, nA1);
+`AND andgate3(nA0andnA1, nA0, nA1);
+`AND andgate4(out0, enable, nA0andnA1);
+`AND andgate5(out1, enable, A0andnA1);
+`AND andgate6(out2, enable, nA0andA1);
+`AND andgate7(out3, enable, A0andA1);
 endmodule
 
 module testDecoder; 

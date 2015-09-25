@@ -1,0 +1,208 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/CompArchFA15/HW/HW2
+vbehavioralDecoder
+Z1 !s110 1443167808
+!i10b 1
+!s100 7al[>3QRZ5ilakDiSSQ6W2
+I9ZPWXjzCI6a[hd5UNSf601
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1443167653
+Z4 8decoder.v
+Z5 Fdecoder.v
+L0 6
+Z6 OP;L;10.4a;61
+r1
+!s85 0
+31
+Z7 !s108 1443167808.000000
+Z8 !s107 adder.v|decoder.v|multiplexer.v|
+Z9 !s90 -reportprogress|300|-work|work|multiplexer.v|decoder.v|adder.v|
+!s101 -O0
+!i113 1
+Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+nbehavioral@decoder
+vbehavioralFullAdder
+R1
+!i10b 1
+!s100 18^VXo0DQT6@MSR67YSDJ3
+Ij]EjSWUEJfLCDUgaGV94Z2
+R2
+R0
+Z11 w1443167655
+Z12 8adder.v
+Z13 Fadder.v
+L0 6
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+nbehavioral@full@adder
+vbehavioralMultiplexer
+R1
+!i10b 1
+!s100 aG>lKdHj;f`BZlHM@g]gX2
+I>2l<05`jcMLb`CY031>WD1
+R2
+R0
+Z14 w1443167801
+Z15 8multiplexer.v
+Z16 Fmultiplexer.v
+L0 8
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+nbehavioral@multiplexer
+vstructuralDecoder
+R1
+!i10b 1
+!s100 22B06j[54G82DCoUfFAS^3
+IOGg@a1Z0KlJ>o^WO0PNFX0
+R2
+R0
+R3
+R4
+R5
+L0 13
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+nstructural@decoder
+vstructuralFullAdder
+R1
+!i10b 1
+!s100 >[iZzA=<^C3R8]K04?SKG0
+IJNXY9<0j^JY7k7>^0eST>1
+R2
+R0
+R11
+R12
+R13
+L0 12
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+nstructural@full@adder
+vstructuralMultiplexer
+R1
+!i10b 1
+!s100 7AE:hc0zdXNX84`G<3M>d0
+IZVIE=f;AV1;ao:8Gi=oG]3
+R2
+R0
+R14
+R15
+R16
+L0 17
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+nstructural@multiplexer
+vtestDecoder
+R1
+!i10b 1
+!s100 n74i9cRP_d>Ej@?klYY7]1
+IBa^ci25S@n]b[G2K<AQ>I1
+R2
+R0
+R3
+R4
+R5
+L0 31
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+ntest@decoder
+vtestFullAdder
+R1
+!i10b 1
+!s100 egOAYR^RinYUMaA[D=XZa0
+ITaiGA5;@<0Z[7d_i`9YeW1
+R2
+R0
+R11
+R12
+R13
+L0 23
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+ntest@full@adder
+vtestMultiplexer
+R1
+!i10b 1
+!s100 N:[9`dP3M?2TM_a7Hda:H0
+I31T80S0=0z_LA?I]onCAE2
+R2
+R0
+R14
+R15
+R16
+L0 42
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!s101 -O0
+!i113 1
+R10
+ntest@multiplexer
