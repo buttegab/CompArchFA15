@@ -1,0 +1,5 @@
+Deliverable 6:
+There is a 5 bit input for the address, a single bit for the enable, and it results in a 32 bit output.
+Out is the result of enable being shifted left by the address, which is capable
+of represeenting 32 possible outputs. The address pushes enable, the single 1,
+to the correct output.
