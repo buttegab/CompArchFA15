@@ -1,3 +1,4 @@
+`include "regfile.v"
 //------------------------------------------------------------------------------
 // Test harness validates hw4testbench by connecting it to various functional 
 // or broken register files, and verifying that it correctly identifies each
@@ -12,7 +13,7 @@ module hw4testbenchharness();
   wire[4:0]	ReadRegister2;	// Address of second register to read
   wire[4:0]	WriteRegister;  // Address of register to write
   wire		RegWrite;	// Enable writing of register when High
-  wire		Clk;		// Clock (Positive Edge Triggered)
+  wire		clk;		// Clock (Positive Edge Triggered)
 
   reg		begintest;	// Set High to begin testing register file
   wire		dutpassed;	// Indicates whether register file passed tests
@@ -27,7 +28,7 @@ module hw4testbenchharness();
     .ReadRegister2(ReadRegister2),
     .WriteRegister(WriteRegister),
     .RegWrite(RegWrite),
-    .Clk(Clk)
+    .clk(clk)
   );
 
   // Instantiate test bench to test the DUT
@@ -43,7 +44,7 @@ module hw4testbenchharness();
     .ReadRegister2(ReadRegister2),
     .WriteRegister(WriteRegister),
     .RegWrite(RegWrite), 
-    .Clk(Clk)
+    .clk(clk)
   );
 
   // Test harness asserts 'begintest' for 1000 time steps, starting at time 10
@@ -88,7 +89,7 @@ output reg[4:0]		ReadRegister1,
 output reg[4:0]		ReadRegister2,
 output reg[4:0]		WriteRegister,
 output reg		RegWrite,
-output reg		Clk
+output reg		clk
 );
 
   // Initialize register driver signals
@@ -98,7 +99,7 @@ output reg		Clk
     ReadRegister2=5'd0;
     WriteRegister=5'd0;
     RegWrite=0;
-    Clk=0;
+    clk=0;
   end
 
   // Once 'begintest' is asserted, start running test cases
@@ -108,17 +109,15 @@ output reg		Clk
     #10
 
   // Test Case 1: 
-  //   Write '42' to register 2, verify with Read Ports 1 and 2
-  //   (Passes because example register file is hardwired to return 42)
-  WriteRegister = 5'd2;
-  WriteData = 32'd42;
-  RegWrite = 1;
-  ReadRegister1 = 5'd2;
-  ReadRegister2 = 5'd2;
-  #5 Clk=1; #5 Clk=0;	// Generate single clock pulse
+  // Write Enable is broken or ignored and the register is always written to.
+  WriteRegister = 5'd2; //write data to register 2
+  WriteData = 32'd42; //data written should be 42
+  RegWrite = 0; // reg write is disabled, so nothing should happen
+  ReadRegister1 = 5'd2; 
+  #5 clk=1; #5 clk=0;	// Generate single clock pulse
 
   // Verify expectations and report test result
-  if((ReadData1 != 42) || (ReadData2 != 42)) begin
+  if(ReadData1 == WriteData) begin // if the data in reg 1 is equal to the written data, we know the data is being written to all registers
     dutpassed = 0;	// Set to 'false' on failure
     $display("Test Case 1 Failed");
   end
@@ -126,17 +125,42 @@ output reg		Clk
   // Test Case 2: 
   //   Write '15' to register 2, verify with Read Ports 1 and 2
   //   (Fails with example register file, but should pass with yours)
-  WriteRegister = 5'd2;
-  WriteData = 32'd15;
+  WriteRegister = 5'd31;
+  WriteData = 32'd10;
   RegWrite = 1;
-  ReadRegister1 = 5'd2;
-  ReadRegister2 = 5'd2;
-  #5 Clk=1; #5 Clk=0;
+  ReadRegister1 = 5'd8;
+  
+  #5 clk=1; #5 clk=0;
 
-  if((ReadData1 != 15) || (ReadData2 != 15)) begin
+  if((ReadRegister1 != WriteRegister) && (ReadData1 == WriteData)) begin
     dutpassed = 0;
     $display("Test Case 2 Failed");
   end
+
+// Test Case 3:
+// Register zero is actually a register instead of the constant value zero.
+
+  RegWrite = 1;
+  WriteData = 32'd10;  //first part is number of inputs, ', d for data, and then the data
+  WriteRegister = 5'd0;
+  ReadRegister1 = 5'd0;
+  #5 clk = 1; #5 clk = 0;
+  if(ReadData1 != 0) begin
+    dutpassed = 0;
+    $display("Test Case 3 Failed");
+  end
+
+// Test Case 4:
+// Port 2 is broken and always reads register 17
+    RegWrite = 1;
+    WriteData = 32'd20;
+    WriteRegister = 5'd10;
+    ReadRegister2 = 5'd10;
+    #5 clk = 1; #5 clk = 0;
+    if(ReadData2 != WriteData) begin
+      dutpassed = 0;
+      $display("Test Case 4 Failed");
+    end
 
 
   // All done!  Wait a moment and signal test completion.

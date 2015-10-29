@@ -9,7 +9,7 @@ sim:/hw4testbenchharness/ReadRegister1 \
 sim:/hw4testbenchharness/ReadRegister2 \
 sim:/hw4testbenchharness/WriteRegister \
 sim:/hw4testbenchharness/RegWrite \
-sim:/hw4testbenchharness/Clk \
+sim:/hw4testbenchharness/clk \
 sim:/hw4testbenchharness/begintest \
 sim:/hw4testbenchharness/endtest \
 sim:/hw4testbenchharness/dutpassed
